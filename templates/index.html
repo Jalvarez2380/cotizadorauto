@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotizador de Seguros</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Cotizador de Seguros</h1>
+    <form method="post">
+        <label for="nombre_cliente">Nombre del Cliente:</label>
+        <input type="text" id="nombre_cliente" name="nombre_cliente" required><br><br>
+        <label for="marca_vehiculo">Marca del Vehículo:</label>
+        <input type="text" id="marca_vehiculo" name="marca_vehiculo" required><br><br>
+        <label for="modelo_vehiculo">Modelo del Vehículo:</label>
+        <input type="text" id="modelo_vehiculo" name="modelo_vehiculo" required><br><br>
+        <label for="anio_vehiculo">Año del Vehículo:</label>
+        <input type="number" id="anio_vehiculo" name="anio_vehiculo" required><br><br>
+        <label for="precio_vehiculo">Precio del Vehículo:</label>
+        <input type="number" id="precio_vehiculo" name="precio_vehiculo" required><br><br>
+        <label for="precio_extras">Precio de Extras:</label>
+        <input type="number" id="precio_extras" name="precio_extras" required><br><br>
+        <label for="provincia">Provincia:</label>
+        <select id="provincia" name="provincia" required>
+            <option value="Azuay">Azuay</option>
+            <option value="Bolívar">Bolívar</option>
+            <option value="Cañar">Cañar</option>
+            <option value="Carchi">Carchi</option>
+            <option value="Chimborazo">Chimborazo</option>
+            <option value="Cotopaxi">Cotopaxi</option>
+            <option value="El Oro">El Oro</option>
+            <option value="Esmeraldas">Esmeraldas</option>
+            <option value="Galápagos">Galápagos</option>
+            <option value="Guayas">Guayas</option>
+            <option value="Imbabura">Imbabura</option>
+            <option value="Loja">Loja</option>
+            <option value="Los Ríos">Los Ríos</option>
+            <option value="Manabí">Manabí</option>
+            <option value="Morona Santiago">Morona Santiago</option>
+            <option value="Napo">Napo</option>
+            <option value="Orellana">Orellana</option>
+            <option value="Pastaza">Pastaza</option>
+            <option value="Pichincha">Pichincha</option>
+            <option value="Santa Elena">Santa Elena</option>
+            <option value="Santo Domingo de los Tsáchilas">Santo Domingo de los Tsáchilas</option>
+            <option value="Sucumbíos">Sucumbíos</option>
+            <option value="Tungurahua">Tungurahua</option>
+            <option value="Zamora Chinchipe">Zamora Chinchipe</option>
+        </select><br><br>
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if nombre_cliente %}
+    <div class="resultados">
+        <h2>Resultados de la Cotización</h2>
+        <p><strong>Nombre del Cliente:</strong> {{ nombre_cliente }}</p>
+        <p><strong>Marca del Vehículo:</strong> {{ marca_vehiculo }}</p>
+        <p><strong>Modelo del Vehículo:</strong> {{ modelo_vehiculo }}</p>
+        <p><strong>Año del Vehículo:</strong> {{ anio_vehiculo }}</p>
+        <p><strong>Provincia:</strong> {{ provincia }}</p>
+        <p><strong>Valor Total del Vehículo:</strong> {{ valor_total_vehiculo }}</p>
+        <p><strong>Tasa Aplicada:</strong> {{ tasa_provincia }}</p>
+        <p><strong>Prima Neta:</strong> {{ prima_neta }}</p>
+        <p><strong>Superintendencia:</strong> {{ superintendencia }}</p>
+        <p><strong>Seguro Campesino:</strong> {{ seguro_campesino }}</p>
+        <p><strong>Derechos de Emisión:</strong> {{ derechos_emision }}</p>
+        <p><strong>Subtotal:</strong> {{ subtotal }}</p>
+        <p><strong>IVA:</strong> {{ iva }}</p>
+        <p><strong>Prima Total:</strong> {{ prima_total }}</p>
+        <h3>Formas de Pago</h3>
+        <table>
+            <tr>
+                <th>Forma de Pago</th>
+                <th>Valor</th>
+            </tr>
+            <tr>
+                <td>Pago con Descuento (5%)</td>
+                <td>{{ pago_descuento }}</td>
+            </tr>
+            <tr>
+                <td>6 Pagos sin Intereses (Débito Bancario)</td>
+                <td>{{ pago_6_meses }}</td>
+            </tr>
+            <tr>
+                <td>9 Pagos sin Intereses (Tarjeta de Crédito)</td>
+                <td>{{ pago_9_meses }}</td>
+            </tr>
+            <tr>
+                <td>12 Pagos con Intereses (8.8%)</td>
+                <td>{{ pago_12_meses }}</td>
+            </tr>
+        </table>
+    </div>
+    {% endif %}
+</body>
+</html>
